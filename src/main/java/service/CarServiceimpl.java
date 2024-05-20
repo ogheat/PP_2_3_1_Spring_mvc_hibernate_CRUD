@@ -2,11 +2,12 @@ package service;
 
 import model.Car;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+@Service
 public class CarServiceimpl implements CarService {
     private final List<Car> cars = Arrays.asList(
             new Car(1, "BMW", 3),
@@ -19,9 +20,12 @@ public class CarServiceimpl implements CarService {
 
     @Override
     public List<Car> getList(int count) {
-        if (count >= 5) {
+        if ((count >= 5 || count == 0)) {
             return cars;
+        } else if (count <= 5 && count > 0) {
+            return cars.subList(0, Math.min(count, cars.size()));
+        } else {
+            return null;
         }
-        return cars.subList(0, Math.min(count, cars.size()));
     }
 }
