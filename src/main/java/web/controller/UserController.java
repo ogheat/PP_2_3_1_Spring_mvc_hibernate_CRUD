@@ -41,8 +41,6 @@ public class UserController {
 
     @PostMapping("/addUser")
     public String addUserFromForm(@ModelAttribute("user") User user) {
-        System.out.println(user.getId() + "/adduser object");
-        System.out.println(user.toString());
         userService.saveUser(user);
         return "redirect:/";
     }
