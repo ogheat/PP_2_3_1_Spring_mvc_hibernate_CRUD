@@ -2,11 +2,9 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import web.dao.UserDao;
-import web.model.Car;
 import org.springframework.stereotype.Service;
 import web.model.User;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service

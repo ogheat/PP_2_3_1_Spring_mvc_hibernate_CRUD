@@ -12,7 +12,6 @@ public class User {
     private int id;
 
 
-
     @Column(name = "name")
     private String name;
     @Column(name = "lastname")
@@ -30,7 +29,7 @@ public class User {
         return id;
     }
 
-    private void setid(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 

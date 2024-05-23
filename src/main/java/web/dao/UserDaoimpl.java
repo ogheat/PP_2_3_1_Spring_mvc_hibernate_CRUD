@@ -9,15 +9,17 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public class UserDaoimpl implements UserDao{
+public class UserDaoimpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public List<User> getUsers() {
         return entityManager.createQuery("from User", User.class).getResultList();
     }
 
+    @Transactional
     @Override
     public User getUserById(int id) {
         return entityManager.find(User.class, id);
@@ -34,6 +36,7 @@ public class UserDaoimpl implements UserDao{
     public void updateUser(User user) {
         entityManager.merge(user);
     }
+
     @Transactional
     @Override
     public void deleteUser(int id) {

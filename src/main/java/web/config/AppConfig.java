@@ -47,12 +47,13 @@ public class AppConfig {
         em.setPackagesToScan("web.model");
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         Properties jpaProperties = new Properties();
-        jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        jpaProperties.put("hibernate.show_sql", "true");
-        jpaProperties.put("hibernate.hbm2ddl.auto", "validate");
+        jpaProperties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        jpaProperties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         em.setJpaProperties(jpaProperties);
         return em;
     }
+
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);

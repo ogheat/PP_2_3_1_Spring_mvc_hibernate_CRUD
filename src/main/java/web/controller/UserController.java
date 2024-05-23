@@ -10,8 +10,10 @@ import web.service.UserService;
 
 import java.util.List;
 
+
 @Controller
 public class UserController {
+
 
     UserService userService;
 
@@ -34,26 +36,26 @@ public class UserController {
     }
 
     @GetMapping("/add")
-    public String AddUserForm(Model model) {
+    public String addUserForm(Model model) {
         model.addAttribute("user", new User());
         return "addnewuser";
     }
 
     @PostMapping("/addUser")
-    public String addUserFromForm(@ModelAttribute("user") User user) {
+    public String saveUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/";
     }
 
-    @GetMapping("/updateUser")
-    public String updateUser(@RequestParam("id") int id, Model model) {
+    @GetMapping("/editUser")
+    public String editUserForm(@RequestParam("id") int id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "updateuser";
     }
 
-    @PostMapping("/updateUserbyid")
-    public String updateUserbyid(@ModelAttribute User user) {
+    @PostMapping("/updateUser")
+    public String updateUser(@ModelAttribute User user) {
         userService.updateUser(user);
         return "redirect:/";
     }
